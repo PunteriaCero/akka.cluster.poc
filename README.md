@@ -1,0 +1,1 @@
+# POC Akka.Net para MOA
