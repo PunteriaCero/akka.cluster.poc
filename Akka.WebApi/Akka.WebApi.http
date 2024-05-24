@@ -1,0 +1,6 @@
+@Akka.WebApi_HostAddress = http://localhost:5025
+
+GET {{Akka.WebApi_HostAddress}}/actors/
+Accept: application/json
+
+###
