@@ -5,3 +5,6 @@
 /Akka.WebApi/.vs
 /Akka.WebApi/bin/Debug/net8.0
 /Akka.WebApi/obj
+/AKKA.ClusterNode/.vs
+/AKKA.ClusterNode/bin/Debug/net8.0
+/AKKA.ClusterNode/obj
