@@ -27,14 +27,30 @@ namespace Akka.WebApi.Controllers
             }");
             _actorSystem = ActorSystem.Create("ClusterSys", config);
 
-            var remoteAddress = Address.Parse("akka.tcp://ClusterSys@127.0.0.1:9221");
-            _remoteActor = _actorSystem.ActorSelection(remoteAddress + "/user/devices").ResolveOne(TimeSpan.FromSeconds(3)).Result;
+            _remoteActor = this.GetActorRef(Address.Parse("akka.tcp://AKKACluster@192.168.1.36:9001"));
+            if (_remoteActor == null)
+                _remoteActor = this.GetActorRef(Address.Parse("akka.tcp://AKKACluster@192.168.1.36:9002"));
+
+            if (_remoteActor == null)
+                throw new Exception("There is no nodes available in the cluster");
+        }
+
+        private IActorRef GetActorRef(Akka.Actor.Address path)
+        {
+            try
+            {
+                return _actorSystem.ActorSelection(path + "/user/devices").ResolveOne(TimeSpan.FromSeconds(3)).Result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
         }
 
         [HttpGet]
-        public async Task<string> Get()
+        public async Task<string> Get(string message)
         {
-            string message = "algo";
             return await _remoteActor.Ask<string>(message);
         }
     }

@@ -1,0 +1,11 @@
+services:
+  node2:
+    container_name: node2
+    build: ./AKKA.ClusterNode
+    ports:
+      - "9002:4055"
+    environment:
+      - AKKACN_ACTORSYSTEMNAME=AKKACluster
+      - AKKACN_HOSTNAME=192.168.1.36
+      - AKKACN_PORT=9002
+      - AKKACN_SEEDNODES=akka.tcp://AKKACluster@192.168.1.36:9001,akka.tcp://AKKACluster@192.168.1.36:9002

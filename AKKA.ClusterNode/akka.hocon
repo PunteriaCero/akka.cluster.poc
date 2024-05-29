@@ -1,0 +1,14 @@
+﻿akka {   
+	actor.deployment {
+		/devices {
+			router = round-robin-pool
+			nr-of-instances = 5
+		}
+	}
+	cluster {
+		downing-provider-class = "Akka.Cluster.SplitBrainResolver, Akka.Cluster"
+		split-brain-resolver {
+			active-strategy = keep-majority
+		}
+	}
+}

@@ -1,0 +1,18 @@
+{
+  "profiles": {
+    "AKKA.ClusterNode": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "AKKACN_ACTORSYSTEMNAME": "AKKACluster",
+        "AKKACN_SEEDNODES": "akka.tcp://AKKACluster@127.0.0.1:9000"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
